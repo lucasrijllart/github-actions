@@ -1,0 +1,16 @@
+# action.yml
+name: 'Build Jenkins job'
+description: 'Build a Jenkins job and report its result'
+inputs:
+  job:
+    description: 'The URL of the job to be built. Example: https://build.jenkins.com/job/my-app/job/master/'
+    required: true
+  creds:
+    description: 'Jenkins authentiation credentials. Example: test:123456789'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.job }}
+    - ${{ inputs.creds }}
